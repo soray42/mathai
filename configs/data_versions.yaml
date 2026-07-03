@@ -3,3 +3,13 @@
 openalex_snapshot: ""      # set to the OpenAlex snapshot date used, e.g. 2025-06-01
 pes2o_version: "v2"        # allenai/peS2o revision
 zbmath_fetch_date: ""      # date the zbMATH MSC labels were pulled
+
+# Pilot inputs for the OT x AI subdomain figures (src/c6_output/pilot_*).
+# These tables are gitignored; the identifiers below pin the exact copies the
+# committed figures were built from so the pilot can be reproduced.
+pilot_ot_ai:
+  pilot_seed_ot: "cd43be53-4290-4f2f-9ff8-edb009ae6a4d"
+  pilot_ref_meta: "b72a9b5a-a9d2-4697-a783-5b9806cfbd79"
+  pilot_ref_labels: "e6e2a0c7-8f15-4ad5-9e67-47dd6d568927"
+  survival_set: "6ebebd29-f7e9-4033-a46a-2507b8bd7153"
+  adoption_events: "67fa4aed-e3cc-469c-9ed1-3db95ac9cd1f"
