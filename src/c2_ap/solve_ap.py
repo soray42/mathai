@@ -20,14 +20,31 @@ def solve_single_lambda(W, birth, lam, method="neumann", tol=1e-10,
     (robust, matrix-free); method='gmres' solves the sparse system directly.
     """
     birth = np.asarray(birth, dtype=np.float64)
+    # Leaves (out-degree zero) are the oldest ancestors on a lineage: they
+    # have no references of their own, so their effective age must stay at
+    # their own birth year. Without pinning, the (1-lam)*birth term alone
+    # shrinks a leaf toward zero and that error propagates down every chain
+    # that passes through it, blowing up the effective age of its citers.
+    is_leaf = np.asarray(W.sum(axis=1)).ravel() == 0
     if method == "gmres":
         n = W.shape[0]
-        A_op = eye(n, format="csr") - lam * W
-        x, _ = gmres(A_op, (1.0 - lam) * birth, rtol=tol, maxiter=max_iter)
+        # Pin leaves inside the system, not after it: replace each leaf row of
+        # (I - lam*W) with the identity row and set its right-hand side to the
+        # leaf's birth year, so A[leaf]=birth[leaf] is enforced during the solve
+        # and never propagates a shrunk value to the papers that cite it.
+        A_op = (eye(n, format="csr") - lam * W).tolil()
+        rhs = (1.0 - lam) * birth
+        leaf_rows = np.flatnonzero(is_leaf)
+        for j in leaf_rows:
+            A_op.rows[j] = [j]
+            A_op.data[j] = [1.0]
+        rhs[is_leaf] = birth[is_leaf]
+        x, _ = gmres(A_op.tocsr(), rhs, rtol=tol, maxiter=max_iter)
         return x
     a = birth.copy()
     for _ in range(max_iter):
         a_next = (1.0 - lam) * birth + lam * (W @ a)
+        a_next[is_leaf] = birth[is_leaf]
         if np.max(np.abs(a_next - a)) < tol:
             return a_next
         a = a_next
