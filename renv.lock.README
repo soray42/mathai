@@ -1,0 +1,5 @@
+R survival stack is managed with renv. Core packages:
+  flexsurv, flexsurvcure   mixture cure survival model (main analysis)
+  depCensoring             dependent-censoring bounds (robustness appendix)
+  survival                 Kaplan-Meier cross-check
+Run renv::init() then renv::snapshot() to generate renv.lock.

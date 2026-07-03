@@ -1,0 +1,4 @@
+# Central seed registry. Anything stochastic reads its seed from here.
+global_seed: 20240601
+null_model_seed: 71
+sampling_seed: 137

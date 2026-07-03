@@ -1,0 +1,12 @@
+# Python side: graph construction, sparse solve, streaming, dating.
+datasets>=2.19
+huggingface-hub>=0.23
+numpy>=1.26
+scipy>=1.13
+pandas>=2.2
+pyarrow>=16.0
+networkx>=3.3
+pyamg>=5.1
+requests>=2.31
+pyyaml>=6.0
+scikit-learn>=1.5

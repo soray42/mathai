@@ -1,0 +1,35 @@
+# data artifacts — never versioned, pulled/streamed at runtime
+data/raw/*
+data/interim/*
+data/processed/*
+!data/**/.gitkeep
+
+# outputs are regenerated
+outputs/figures/*
+outputs/tables/*
+outputs/exhibits/*
+!outputs/**/.gitkeep
+
+# python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+env/
+*.egg-info/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+
+# secrets & local env
+.env
+*.key
+secrets.yaml
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/

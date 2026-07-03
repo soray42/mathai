@@ -1,0 +1,5 @@
+# Pinned data snapshots. Every intermediate artifact is stamped with these
+# so a rebuild is bit-reproducible and lambda sweeps never mix snapshots.
+openalex_snapshot: ""      # set to the OpenAlex snapshot date used, e.g. 2025-06-01
+pes2o_version: "v2"        # allenai/peS2o revision
+zbmath_fetch_date: ""      # date the zbMATH MSC labels were pulled

@@ -1,0 +1,8 @@
+# Effective-age recursion mixing parameter. A(p) = (1-lambda)*birth + lambda*W*A.
+# The sweep produces the flip-point curve used in the robustness phase.
+lambda_grid: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95]
+lambda_default: 0.5
+solver:
+  method: gmres          # falls back to topological forward-substitution when acyclic
+  tol: 1.0e-8
+  max_iter: 500
